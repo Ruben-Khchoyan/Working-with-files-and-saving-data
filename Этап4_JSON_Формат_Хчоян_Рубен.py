@@ -1,9 +1,10 @@
+
+# Импорт модуля json
+import json
+
+
 # Начало функции добавления в файл с заметками заметки в формате JSON
 def append_notes_to_file(notes, filename):
-
-    # Импорт модуля json
-    import json
-
     # Кортеж с ключами отображающими смысл данных на русском
     keys = ('Имя пользователя', 'Заголовок', 'Описание', 'Статус', 'Дата создания', 'Дедлайн')
 
@@ -22,7 +23,7 @@ def append_notes_to_file(notes, filename):
         # json.dumps - преобразования списка в строку в json формате
         # ensure_ascii=False - отключение данного параметра позволяет использовать кодировку UTF-8
         # indent=4 - отступ в 4 пробела для читабельности файла
-        with open(filename, 'w', encoding='UTF-8') as file:
+        with open(filename + '.json', 'w', encoding='UTF-8') as file:
             file.write(json.dumps(new_lst_notes, ensure_ascii=False, indent=4))
     except UnicodeDecodeError: # Обработка ошибки чтения файла.
         print('Ошибка при чтении файла. Проверьте его содержимое.')
@@ -30,28 +31,30 @@ def append_notes_to_file(notes, filename):
         print('Ошибка доступа! Отсутствие прав доступа!')
 # Конец функции
 
-notes_3 = [
-    {'username': 'Валентин',
-              'title': 'Список дел',
-              'content': 'Купить продукты на неделю',
-              'status': 'новая',
-              'created_date': '18-11-2024',
-              'issue_date': '19-11-2024'},
 
-             {'username': 'Ира',
-              'title': 'Список овощей',
-              'content': 'Купить грибы и помидоры',
-              'status': 'в процессе',
-              'created_date': '01-11-2024',
-              'issue_date': '30-11-2024'},
+if __name__ == '__main__':
+    notes_3 = [
+        {'username': 'Валентин',
+                  'title': 'Список дел',
+                  'content': 'Купить продукты на неделю',
+                  'status': 'новая',
+                  'created_date': '18-11-2024',
+                  'issue_date': '19-11-2024'},
 
-             {'username': 'Володя',
-              'title': 'Починить машину',
-              'content': 'Купить клапана и свечи',
-              'status': 'новая',
-              'created_date': '04-11-2024',
-              'issue_date': '20-11-2024'}
-]
+                 {'username': 'Ира',
+                  'title': 'Список овощей',
+                  'content': 'Купить грибы и помидоры',
+                  'status': 'в процессе',
+                  'created_date': '01-11-2024',
+                  'issue_date': '30-11-2024'},
+
+                 {'username': 'Володя',
+                  'title': 'Починить машину',
+                  'content': 'Купить клапана и свечи',
+                  'status': 'новая',
+                  'created_date': '04-11-2024',
+                  'issue_date': '20-11-2024'}
+    ]
 
 
-append_notes_to_file(notes_3, 'notes_2.txt')
+    append_notes_to_file(notes_3, 'notes_2')

@@ -1,9 +1,10 @@
+
+# Импорт модуля yaml
+import yaml
+
+
 # Начало функции добавления в файл с заметками заметки
 def append_notes_to_file(notes, filename):
-
-    # Импорт модуля yaml
-    import yaml
-
     # Кортеж с ключами отображающими смысл данных на русском
     keys = ('Имя пользователя', 'Заголовок', 'Описание', 'Статус', 'Дата создания', 'Дедлайн')
 
@@ -22,7 +23,7 @@ def append_notes_to_file(notes, filename):
         # allow_unicode=True - параметр, позволяющий использовать кодировку UTF-8
         # sort_keys=False - отключение параметра, чтобы при записи не было сортировки ключей по алфавиту,
         # чтобы все данные шли в заданной последовательности
-        with open(filename, 'a', encoding='UTF-8') as file:
+        with open(filename + '.yaml', 'a', encoding='UTF-8') as file:
             yaml.dump(new_lst_notes, file,
                       allow_unicode=True, sort_keys=False)
     except UnicodeDecodeError: # Обработка ошибки чтения файла.
@@ -31,27 +32,29 @@ def append_notes_to_file(notes, filename):
         print('Ошибка доступа! Отсутствие прав доступа!')
 # Конец функции
 
-new_notes = [
-    {'username': 'Валентин',
-              'title': 'Список дел',
-              'content': 'Купить продукты на неделю',
-              'status': 'новая',
-              'created_date': '18-11-2024',
-              'issue_date': '19-11-2024'},
 
-             {'username': 'Ира',
-              'title': 'Список овощей',
-              'content': 'Купить грибы и помидоры',
-              'status': 'в процессе',
-              'created_date': '01-11-2024',
-              'issue_date': '30-11-2024'},
+if __name__ == '__main__':
+    new_notes = [
+        {'username': 'Валентин',
+                  'title': 'Список дел',
+                  'content': 'Купить продукты на неделю',
+                  'status': 'новая',
+                  'created_date': '18-11-2024',
+                  'issue_date': '19-11-2024'},
 
-             {'username': 'Володя',
-              'title': 'Починить машину',
-              'content': 'Купить клапана и свечи',
-              'status': 'новая',
-              'created_date': '04-11-2024',
-              'issue_date': '20-11-2024'}
-]
+                 {'username': 'Ира',
+                  'title': 'Список овощей',
+                  'content': 'Купить грибы и помидоры',
+                  'status': 'в процессе',
+                  'created_date': '01-11-2024',
+                  'issue_date': '30-11-2024'},
 
-append_notes_to_file(new_notes, "notes.txt")
+                 {'username': 'Володя',
+                  'title': 'Починить машину',
+                  'content': 'Купить клапана и свечи',
+                  'status': 'новая',
+                  'created_date': '04-11-2024',
+                  'issue_date': '20-11-2024'}
+    ]
+
+    append_notes_to_file(new_notes, "notes")
